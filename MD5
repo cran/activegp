@@ -1,4 +1,4 @@
-57a8d779781d159939af11b54543e666 *DESCRIPTION
+019df64b44bf40db0c1001cf44c7f1f0 *DESCRIPTION
 83e5c02a685ca45ca7165e8337c5983b *LICENSE
 ba1a0d7dd2894f26f793be772c1eeb42 *NAMESPACE
 08aa1b73d5e94818446b8351589a9233 *R/RcppExports.R
@@ -36,7 +36,7 @@ ec1e4a0057f60247d9913f9027048ce9 *man/update.const_C.Rd
 2a6f9e9e044a78154d3cfda5936d6f48 *src/Makevars.win
 bc168fd0b64c464cadea0469bb555e18 *src/RcppExports.cpp
 efa7c3ef818c7c026d18c89507cc6f4d *src/hetGP_funcs.cpp
-8ba5368dda233aa86290854d3a597c1b *src/kernelexps.cpp
+a4aa6781c11f782095c3929e9899922f *src/kernelexps.cpp
 d8cbd69c19e8c184bb4fa9162006ebbb *tests/testthat/test_C_est.R
 d1c4d06dc8d83e5704bda2fb1b0e8851 *tests/testthat/test_deprecated.R
 e319d485d2133d20a395b607a12112bc *tests/testthat/test_grad_expr.R

@@ -20,6 +20,7 @@
 #' @useDynLib activegp
 #' @importFrom  Rcpp evalCpp
 #' @import hetGP
+#' @seealso \code{\link[activegp]{print.const_C}}, \code{\link[activegp]{plot.const_C}}
 #' @examples 
 #' ################################################################################
 #' ### Active subspace of a Gaussian process
@@ -52,7 +53,12 @@
 #' plot(design %*% eigen(C_hat$mat)$vectors[,1], response, 
 #'   main = "Projection along estimated active direction")
 #' plot(design %*% eigen(C_hat$mat)$vectors[,2], response, 
-#'   main = "Projection along estimated inactive direction") 
+#'   main = "Projection along estimated inactive direction")
+#'   
+#' # For other plots:
+#' # par(mfrow = c(1, 3)) # uncomment to have all plots together
+#' plot(C_hat)
+#' # par(mfrow = c(1, 1)) # restore graphical window
 #' 
 C_GP <- function(model){
   # Extract model design and response 
@@ -583,6 +589,21 @@ print.const_C <- function(x, ...) {
   cts <- c("Gaussian", "Matern3_2", "Matern5_2")
   cat(paste(cts[x$ct], "kernel GP Estimate of Constantine's C:\n"))
   print(x$mat)
+}
+
+#' Plot const_C objectc
+#' @param x A const_C object, the result of a call to C_GP
+#' @param output one of \code{"image"} (image of the C matrix), \code{"logvals"} (log-eigen values), 
+#' \code{"projfn"} projected function on first eigen vector or all plots at once (default).
+#' @param ... Additional parameters. Not used. 
+#' @importFrom graphics image plot
+#' @export
+plot.const_C <- function(x, output = c("all", "matrix", "logvals", "projfn"), ...) {
+  output <- match.arg(output)
+  if(output %in% c("all", "matrix")) image(x$mat, main = "C matrix values heatmap")
+  if(output %in% c("all", "logvals")) plot(log(eigen(x$mat)$values), main = "log eigen values of C", xlab = "index", ylab = "")
+  if(output %in% c("all", "projfn")) plot(x$model$X0 %*% eigen(x$mat)$vectors[,1], x$model$Y0, xlab = "First AS direction", ylab = "Function values")
+
 }
 
 

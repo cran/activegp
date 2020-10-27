@@ -56,11 +56,19 @@ print(subspace_dist(C_hat, matrix(act_dir, nrow = nvar), r = 1))
 plot(design \%*\% eigen(C_hat$mat)$vectors[,1], response, 
   main = "Projection along estimated active direction")
 plot(design \%*\% eigen(C_hat$mat)$vectors[,2], response, 
-  main = "Projection along estimated inactive direction") 
+  main = "Projection along estimated inactive direction")
+  
+# For other plots:
+# par(mfrow = c(1, 3)) # uncomment to have all plots together
+plot(C_hat)
+# par(mfrow = c(1, 1)) # restore graphical window
 
 }
 \references{
 N. Wycoff, M. Binois, S. Wild (2019+), Sequential Learning of Active Subspaces, preprint.\cr
 
 P. Constantine (2015), Active Subspaces, Philadelphia, PA: SIAM.
+}
+\seealso{
+\code{\link[activegp]{print.const_C}}, \code{\link[activegp]{plot.const_C}}
 }

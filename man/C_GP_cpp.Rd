@@ -2,25 +2,25 @@
 % Please edit documentation in R/RcppExports.R
 \name{C_GP_cpp}
 \alias{C_GP_cpp}
-\title{Equivalent of \code{\link[activegp]{C_GP}} using RcppArmadillo}
+\title{Covariance of kernel computations}
 \usage{
 C_GP_cpp(design, response, theta, Ki, ct)
 }
 \arguments{
-\item{design}{A matrix of design points, one in each row}
+\item{design}{matrix of design points}
 
-\item{response}{A vector of observations at each design point.}
+\item{theta}{lengthscales}
 
-\item{theta}{vector of lengthscales}
-
-\item{Ki}{inverse covariance matrix}
+\item{Ki}{The inverse covariance matrix}
 
 \item{ct}{Covariance type, 1 means Gaussian, 2 means Matern 3/2, 3 means Matern 5/2}
+
+\item{Kir}{The inverse covariance matrix times the response.}
 }
 \value{
-The active subspace matrix C.
+The matrix representing the result of the integration.
 }
 \description{
-Equivalent of \code{\link[activegp]{C_GP}} using RcppArmadillo
+Computes Int(kappa_i(X, design) . kappa_j(design, X)). This function is preferred for initialization
 }
 \keyword{internal}

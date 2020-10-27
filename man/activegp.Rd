@@ -3,6 +3,7 @@
 \docType{package}
 \name{activegp}
 \alias{activegp}
+\alias{activegp-package}
 \title{Package activegp}
 \description{
 Active subspace estimation with Gaussian processes

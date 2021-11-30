@@ -1,3 +1,4 @@
+#define STRICT_R_HEADERS
 #include <Rcpp.h>
 #include <iostream>
 #include <cmath>     /* erf; pow; etc...*/ 
@@ -7,6 +8,9 @@ using namespace Rcpp;
 #include <omp.h>
 #endif
 
+// STRICT_R_HEADERS undefines PI, so we (compile-time) compute a better replacement
+//constexpr double pi = std::acos(-1);
+constexpr double pi = 3.14159265358979323846;
 
 //////// Gaussian kernel
 
@@ -24,7 +28,7 @@ NumericVector erf_cpp(NumericVector x){
 double w_ii_cpp(double a, double b, double t, int ct){
   if (ct == 1) {
     double a2 = a*a, b2 = b*b, t2 = t*t;
-    return(1/(8*t2*t) * ((2 * (-2 + a + b) * exp((-a2 - b2 -2 + 2 * a + 2 * b)/(2*t2)) * t + exp(-(a-b)*(a-b)/(4 * t2)) *  sqrt(PI) * ((a-b)*(a-b) - 2 * t2) * erf((-2+a+b)/(2* t))) - (2 * (a+b)* t * exp(-((a2 + b2) / (2*t2))) + exp(-(a-b)*(a-b)/(4 * t2)) * sqrt(PI)* ((a-b)*(a-b) - 2 * t2)* erf((a+b)/(2* t)))));
+    return(1/(8*t2*t) * ((2 * (-2 + a + b) * exp((-a2 - b2 -2 + 2 * a + 2 * b)/(2*t2)) * t + exp(-(a-b)*(a-b)/(4 * t2)) *  sqrt(pi) * ((a-b)*(a-b) - 2 * t2) * erf((-2+a+b)/(2* t))) - (2 * (a+b)* t * exp(-((a2 + b2) / (2*t2))) + exp(-(a-b)*(a-b)/(4 * t2)) * sqrt(pi)* ((a-b)*(a-b) - 2 * t2)* erf((a+b)/(2* t)))));
   } else if (ct == 2) {
     if (b > a) {
       double temp = a;
@@ -62,7 +66,7 @@ double grad_w_ii_cppa(double a, double b, double t, int ct){
   if (ct == 1) {
     return((exp(-(a2 + b2)/(2.*t2)) * (a2*t + 4*a*b*t - b2*t) + 
            exp(-(2 - 2*a -2*b + a2 + b2)/(2.*t2))*(-a2*t - 4*a*b*t + b2*t -4*t + 6*a*t + 2*b*t) + 
-           exp(-(a2 + b2 -2*a*b)/(4.*t2)) * (erf((-2 + a + b)/(2.*t)) - erf((a + b)/(2.*t)))*(-a2*a*sqrt(PI) + 3*a2*b*sqrt(PI) - 3*a*b2*sqrt(PI) + b2*b*sqrt(PI) +6*(a - b)*sqrt(PI)*t2)/2.)/(8.*t3*t2));
+           exp(-(a2 + b2 -2*a*b)/(4.*t2)) * (erf((-2 + a + b)/(2.*t)) - erf((a + b)/(2.*t)))*(-a2*a*sqrt(pi) + 3*a2*b*sqrt(pi) - 3*a*b2*sqrt(pi) + b2*b*sqrt(pi) +6*(a - b)*sqrt(pi)*t2)/2.)/(8.*t3*t2));
   } else if (ct == 2) {
     if (a > b) {
       return((3*exp((2*sqrt(3.)*(-1 + a + b))/t - (sqrt(3.)*(a + b))/t)*(-6*t + 6*a*t + 6*b*t - 6*a*b*t + sqrt(3.)*a*t2 - sqrt(3.)*b*t2))/(4.*t3*t2) +
@@ -105,25 +109,25 @@ double grad_w_ii_cppb(double a, double b, double t, int ct){
            b2)/(2.*t2))*(-(a2*t) + 2*a*b*t - b2*t +                                                                                                               \
            2*t3))/(8.*t2*t2*t) + (exp(-pow(-2 + a + b,2)/(4.*t2) -                                                                                                \
            (a2 + b2)/(2.*t2) + (2 + a2 + 2*a*(-1 + b) -                                                                                                           \
-           2*b + b2)/(2.*t2))*(-2*a*sqrt(PI)*t2*erf((-2 + a +                                                                                                     \
-           b)/(2.*t)) + 2*b*sqrt(PI)*t2*erf((-2 + a +                                                                                                             \
+           2*b + b2)/(2.*t2))*(-2*a*sqrt(pi)*t2*erf((-2 + a +                                                                                                     \
+           b)/(2.*t)) + 2*b*sqrt(pi)*t2*erf((-2 + a +                                                                                                             \
            b)/(2.*t))))/(8.*t2*t2*t) + (exp(-pow(-2 + a + b,2)/(4.*t2) +                                                                                          \
            (a2 + 2*a*(-2 + b) + (-4 + b)*b)/(4.*t2) - (a2 +                                                                                                       \
            b2)/(2.*t2) + (4 + a2 + 2*a*b +                                                                                                                        \
-           b2)/(4.*t2))*(2*a*sqrt(PI)*t2*erf((a + b)/(2.*t)) -                                                                                                    \
-           2*b*sqrt(PI)*t2*erf((a + b)/(2.*t))))/(8.*t2*t2*t) +                                                                                                   \
+           b2)/(4.*t2))*(2*a*sqrt(pi)*t2*erf((a + b)/(2.*t)) -                                                                                                    \
+           2*b*sqrt(pi)*t2*erf((a + b)/(2.*t))))/(8.*t2*t2*t) +                                                                                                   \
            (exp(pow(a + b,2)/(4.*t2) - (a2 +                                                                                                                      \
-           b2)/(2.*t2))*((a2*a*sqrt(PI)*erf((-2 + a +                                                                                                             \
-           b)/(2.*t)))/2. - (3*a2*b*sqrt(PI)*erf((-2 + a + b)/(2.*t)))/2.                                                                                         \
-           + (3*a*b2*sqrt(PI)*erf((-2 + a + b)/(2.*t)))/2. -                                                                                                      \
-           (b2*b*sqrt(PI)*erf((-2 + a + b)/(2.*t)))/2. -                                                                                                          \
-           a*sqrt(PI)*t2*erf((-2 + a + b)/(2.*t)) +                                                                                                               \
-           b*sqrt(PI)*t2*erf((-2 + a + b)/(2.*t)) -                                                                                                               \
-           (a2*a*sqrt(PI)*erf((a + b)/(2.*t)))/2. +                                                                                                               \
-           (3*a2*b*sqrt(PI)*erf((a + b)/(2.*t)))/2. -                                                                                                             \
-           (3*a*b2*sqrt(PI)*erf((a + b)/(2.*t)))/2. +                                                                                                             \
-           (b2*b*sqrt(PI)*erf((a + b)/(2.*t)))/2. +                                                                                                               \
-           a*sqrt(PI)*t2*erf((a + b)/(2.*t)) - b*sqrt(PI)*t2*erf((a +                                                                                             \
+           b2)/(2.*t2))*((a2*a*sqrt(pi)*erf((-2 + a +                                                                                                             \
+           b)/(2.*t)))/2. - (3*a2*b*sqrt(pi)*erf((-2 + a + b)/(2.*t)))/2.                                                                                         \
+           + (3*a*b2*sqrt(pi)*erf((-2 + a + b)/(2.*t)))/2. -                                                                                                      \
+           (b2*b*sqrt(pi)*erf((-2 + a + b)/(2.*t)))/2. -                                                                                                          \
+           a*sqrt(pi)*t2*erf((-2 + a + b)/(2.*t)) +                                                                                                               \
+           b*sqrt(pi)*t2*erf((-2 + a + b)/(2.*t)) -                                                                                                               \
+           (a2*a*sqrt(pi)*erf((a + b)/(2.*t)))/2. +                                                                                                               \
+           (3*a2*b*sqrt(pi)*erf((a + b)/(2.*t)))/2. -                                                                                                             \
+           (3*a*b2*sqrt(pi)*erf((a + b)/(2.*t)))/2. +                                                                                                             \
+           (b2*b*sqrt(pi)*erf((a + b)/(2.*t)))/2. +                                                                                                               \
+           a*sqrt(pi)*t2*erf((a + b)/(2.*t)) - b*sqrt(pi)*t2*erf((a +                                                                                             \
            b)/(2.*t))))/(8.*t2*t2*t));
   } else if (ct == 2) {
     if (a > b) {
@@ -169,7 +173,7 @@ double grad_w_ii_cppb(double a, double b, double t, int ct){
 double w_ij_cpp(double a, double b, double t, int ct){
   double a2 = a*a, b2 = b*b, t2 = t*t, t3 = t2*t;
   if (ct == 1) {
-    return(-((2 * (exp(-(a2 + b2)/(2*t2)) - exp((-a2 -b2 + 2 *(a + b -1))/(2*t2)))* t + (a-b) * exp(-(a-b)*(a-b)/(4 * t2)) * sqrt(PI) * (erf((-2+a+b)/(2 * t)) - erf((a+b)/(2* t)))))/(4 * t));
+    return(-((2 * (exp(-(a2 + b2)/(2*t2)) - exp((-a2 -b2 + 2 *(a + b -1))/(2*t2)))* t + (a-b) * exp(-(a-b)*(a-b)/(4 * t2)) * sqrt(pi) * (erf((-2+a+b)/(2 * t)) - erf((a+b)/(2* t)))))/(4 * t));
   } else if (ct == 2) {
     if (a > b) {
       return((-6*a*b*t - 3*sqrt(3.)*a*t2 - sqrt(3.)*b*t2 - 2*t3)/(4.*exp((sqrt(3.)*(a + b))/t)*t3) + (exp((sqrt(3.)*(-a + b))/t)*(2*sqrt(3.)*a2*a - 6*sqrt(3.)*a2*b + 6*sqrt(3.)*a*b2 - 2*sqrt(3.)*b2*b + 6*a2*t - 12*a*b*t + 6*b2*t - sqrt(3.)*a*t2 + sqrt(3.)*b*t2 - 2*t3))/(4.*t3) + (exp((2*sqrt(3.)*b)/t - (sqrt(3.)*(a + b))/t)*(3*sqrt(3.)*a*t2 - 3*sqrt(3.)*b*t2 + 2*t3))/(4.*t3) + (exp((sqrt(3.)*(-2 + a + b))/t)*(6*t - 6*a*t - 6*b*t + 6*a*b*t + 4*sqrt(3.)*t2 - 3*sqrt(3.)*a*t2 - sqrt(3.)*b*t2 + 2*t3))/(4.*t3));
@@ -229,9 +233,9 @@ double w_ij_cpp(double a, double b, double t, int ct){
 double grad_w_ij_cppa(double a, double b, double t, int ct){
   double a2 = a*a, b2 = b*b, t2 = t*t, t3 = t2 * t; 
   if (ct == 1) {
-    return((exp(-(a2 - 2*a*b + b2)/(4.*t2))*sqrt(PI)*(a2 - 2*a*b + b2 - 2*t2)*erf((-2 + a + b)/(2.*t)) + 
+    return((exp(-(a2 - 2*a*b + b2)/(4.*t2))*sqrt(pi)*(a2 - 2*a*b + b2 - 2*t2)*erf((-2 + a + b)/(2.*t)) + 
            (-2*((-3*a + b)*exp(-(a2 + b2)/(2.*t2)) + (-2 + 3*a - b)*exp(-(2 -2*a - 2*b + a2 + b2)/(2.*t2)))*t - 
-           exp(-(a2 - 2*a*b + b2)/(4.*t2))*sqrt(PI)*(a2 - 2*a*b + b2 - 2*t2)*erf((a + b)/(2.*t))))/
+           exp(-(a2 - 2*a*b + b2)/(4.*t2))*sqrt(pi)*(a2 - 2*a*b + b2 - 2*t2)*erf((a + b)/(2.*t))))/
              (8.*t3));
   } else if (ct == 2) {
     if (a > b) {
@@ -332,9 +336,9 @@ double grad_w_ij_cppa(double a, double b, double t, int ct){
 double grad_w_ij_cppb(double a, double b, double t, int ct){
   double a2 = a*a, b2 = b*b, t2 = t*t, t3 = t2 * t;
   if (ct == 1) {
-    return((-(exp((-a2 + 2*a*b - b2)/(4.*t2))*sqrt(PI)*(a2 - 2*a*b + b2 - 2*t2)*erf((-2 + a + b)/(2.*t))) + 
+    return((-(exp((-a2 + 2*a*b - b2)/(4.*t2))*sqrt(pi)*(a2 - 2*a*b + b2 - 2*t2)*erf((-2 + a + b)/(2.*t))) + 
            (-2*(-((a + b)*exp(-(a2 + b2)/(2.*t2))) + (-2 + a + b)*exp(-(2 - 2 * a - 2 * b + a2 + b2)/(2.*t2)))*t + 
-           exp(-(a2 - 2*a*b + b2)/(4.*t2))*sqrt(PI)*(a2 - 2*a*b + b2 - 2*t2)*erf((a + b)/(2.*t)))) / 
+           exp(-(a2 - 2*a*b + b2)/(4.*t2))*sqrt(pi)*(a2 - 2*a*b + b2 - 2*t2)*erf((a + b)/(2.*t)))) / 
            (8.*t3));
   } else if (ct == 2) {
     if (a > b) {
@@ -392,7 +396,7 @@ double grad_w_ij_cppb(double a, double b, double t, int ct){
 // [[Rcpp::export]]
 double Ikk_cpp(double a, double b, double t, int ct){
   if (ct == 1) {
-    return((sqrt(PI)*(erf((b+a)/(2.*t)) - erf((b+a-2)/(2.*t)))*t*exp(-(b-a)*(b-a)/(4.*t*t)))/2.);
+    return((sqrt(pi)*(erf((b+a)/(2.*t)) - erf((b+a-2)/(2.*t)))*t*exp(-(b-a)*(b-a)/(4.*t*t)))/2.);
   } else if (ct == 2) {
     if (b > a) {
       double temp = a;
@@ -450,7 +454,7 @@ double grad_Ikk_cppa(double a, double b, double t, int ct){
   if (ct == 1) {
     return(-exp(-pow(a - b,2)/(4.*t2) - pow(-2 + a +                       \
            b,2)/(4.*t2))/2. + exp(-pow(a - b,2)/(4.*t2) - pow(a +          \
-           b,2)/(4.*t2))/2. + (sqrt(PI)*(a*erf((-2 + a + b)/(2.*t)) -      \
+           b,2)/(4.*t2))/2. + (sqrt(pi)*(a*erf((-2 + a + b)/(2.*t)) -      \
            b*erf((-2 + a + b)/(2.*t)) - a*erf((a + b)/(2.*t)) + b*erf((a + \
            b)/(2.*t))))/(4.*exp(pow(a - b,2)/(4.*t2))*t));
   } else if(ct == 2) {
@@ -486,7 +490,7 @@ double grad_Ikk_cppb(double a, double b, double t, int ct){
   if (ct == 1) {
     return(-exp(-pow(a - b,2)/(4.*t2) - pow(-2 + a +                       \
            b,2)/(4.*t2))/2. + exp(-pow(a - b,2)/(4.*t2) - pow(a +          \
-           b,2)/(4.*t2))/2. + (sqrt(PI)*(-(a*erf((-2 + a + b)/(2.*t))) +   \
+           b,2)/(4.*t2))/2. + (sqrt(pi)*(-(a*erf((-2 + a + b)/(2.*t))) +   \
            b*erf((-2 + a + b)/(2.*t)) + a*erf((a + b)/(2.*t)) - b*erf((a + \
            b)/(2.*t))))/(4.*exp(pow(a - b,2)/(4.*t2))*t));
   } else if(ct == 2) {
@@ -567,7 +571,7 @@ double grad_Ikk_cppb(double a, double b, double t, int ct){
 //' @param t lengthscale parameter
 //' @noRd
 double IkG_cpp(double a, double t){
-  return(sqrt(PI/2.) * t * (erf(a/(sqrt(2.) * t)) - erf((a - 1)/(sqrt(2.) * t))));
+  return(sqrt(pi/2.) * t * (erf(a/(sqrt(2.) * t)) - erf((a - 1)/(sqrt(2.) * t))));
 }
 
 //TODO: Not used anywhere, remove?

@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // C_GP_cpp
 NumericMatrix C_GP_cpp(NumericMatrix design, NumericVector response, NumericVector theta, NumericMatrix Ki, int ct);
 RcppExport SEXP _activegp_C_GP_cpp(SEXP designSEXP, SEXP responseSEXP, SEXP thetaSEXP, SEXP KiSEXP, SEXP ctSEXP) {

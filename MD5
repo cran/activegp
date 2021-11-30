@@ -1,7 +1,7 @@
-f08327e5c798ed9da6d8dece4600ff6f *DESCRIPTION
+a6f65bcb427ff873721577407e673d59 *DESCRIPTION
 83e5c02a685ca45ca7165e8337c5983b *LICENSE
 4276c5d8f65b510e7feebad8e20cfee5 *NAMESPACE
-d6dc426e5af5bc5c56df1c05065d2a22 *NEWS
+53d69c56837a039076bd9f2e3686b8fe *NEWS
 98608c9041bcca94bfbef7a3ec935bb2 *R/RcppExports.R
 90549e5ea9d0dd5fb1a4548c555aae5d *R/activeC.R
 60fca9f628d725dcff247535f12d651c *R/activegp-package.R
@@ -36,9 +36,9 @@ ec1e4a0057f60247d9913f9027048ce9 *man/update.const_C.Rd
 c5a7f49ce162c2217b5561b637626777 *src/C_GPcpp.cpp
 70ec464237bf39be51b84417ad48eedb *src/Makevars
 2a6f9e9e044a78154d3cfda5936d6f48 *src/Makevars.win
-bc168fd0b64c464cadea0469bb555e18 *src/RcppExports.cpp
+b1a7b74e230dff9671e77f75951af3b5 *src/RcppExports.cpp
 efa7c3ef818c7c026d18c89507cc6f4d *src/hetGP_funcs.cpp
-a4aa6781c11f782095c3929e9899922f *src/kernelexps.cpp
+8d0c6e068e4c333a86538302a6282c1f *src/kernelexps.cpp
 d8cbd69c19e8c184bb4fa9162006ebbb *tests/testthat/test_C_est.R
 e319d485d2133d20a395b607a12112bc *tests/testthat/test_grad_expr.R
 098dc04410d4940384fc21f39f79d96e *tests/testthat/test_hyper_UQ.R

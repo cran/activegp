@@ -53,22 +53,22 @@ test_that("C update works", {
   n <- 5
   r <- 1
   f <- function(x) sin(sum(x))
-  
+
   # Initial design
   design <- matrix(runif(nvar*n), ncol = nvar)
   response <- apply(design, 1, f)
   model <- mleHomGP(design, response, lower = rep(1e-4, nvar), upper = rep(0.5,nvar), known = list(g = 1e-4)) 
-  
+
   C_hat <- C_GP(model)
-  
+
   ## First for one new design
   xnew <- matrix(runif(nvar), ncol = nvar)
   ynew <- f(xnew)
-  
+
   C_up <- update(C_hat, xnew, ynew)
   model1 <- update(model, Xnew = xnew, Znew = ynew, maxit = 0)
   C_1 <- C_GP(model1)
-  
+
   expect_true(norm(C_up$mat - C_1$mat) < 1e-8)
   
   C_up2 <- update_C2(C_hat, xnew, ynew)
@@ -99,6 +99,7 @@ scvar <- function(Cs) {
 covtypes <- c("Gaussian", "Matern3_2", "Matern5_2")
 for (ct in 1:length(covtypes)) {
   test_that(paste(covtypes[ct], " Kernel: Variance of the trace/frob. norm of Cn+1 is correct"),{
+    skip_on_cran()
     set.seed(1234)
     nvar <- 3
     n <- 20

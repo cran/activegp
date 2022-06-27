@@ -28,7 +28,7 @@ test_that("homGP Hessian is correct", {
   
   gr_ref <- hetGP:::dlogLikHom(X0 = model$X0, theta = model$theta, g = model$g, Z0 = model$Z0,
                                Z = model$Z, mult = model$mult, beta0 = model$beta0, covtype = model$covtype)
-  expect_equal(gr, gr_ref[1:nvar], tol = 1e-4)
+  expect_equal(gr, gr_ref[1:nvar], tol = 1e-2)
   # If gradient is ok, hessian should be
   
 })
@@ -64,7 +64,7 @@ test_that("hetGP Hessian is correct", {
                                Z = model$Z, mult = model$mult, beta0 = model$beta0, covtype = model$covtype,
                                Delta = model$Delta, k_theta_g = model$k_theta_g, theta_g = model$theta_g, logN = model$logN,
                                penalty = FALSE)
-  expect_equal(gr, gr_ref[1:nvar], tol = 1e-4)
+  expect_equal(gr, gr_ref[1:nvar], tol = 1e-2)
   # If gradient is ok, hessian should be
   
 })

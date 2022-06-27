@@ -112,21 +112,21 @@ for (ct in 1:length(covtypes)) {
             # Verify each individual quanitity
             # The first quantity, integral of the product of two partials
             expect_true(abs(mean(sapply(xs, function(x) kd1(x, a, l) * kd2(b,x, l))) - 
-              activegp:::w_ii_cpp(a, b, l, ct)) < thresh)
+              activegp:::w_ii_lebesgue(a, b, l, ct)) < thresh)
             expect_true(abs(mean(sapply(xs, function(x) kd1(x, b, l) * kd2(a,x, l))) - 
-              activegp:::w_ii_cpp(b, a, l, ct)) < thresh)
+              activegp:::w_ii_lebesgue(b, a, l, ct)) < thresh)
 
             # The second quantity, integral of the product of a partial and the original kernel
             expect_true(abs(mean(sapply(xs, function(x) kd1(x, a, l) * k(b,x, l))) - 
-              activegp:::w_ij_cpp(a, b, l, ct)) < thresh)
+              activegp:::w_ij_lebesgue(a, b, l, ct)) < thresh)
             expect_true(abs(mean(sapply(xs, function(x) kd1(x, b, l) * k(a,x, l))) - 
-              activegp:::w_ij_cpp(b, a, l, ct)) < thresh)
+              activegp:::w_ij_lebesgue(b, a, l, ct)) < thresh)
 
             # The third quantity, integral of the product of two kernels
             expect_true(abs(mean(sapply(xs, function(x) k(x, a, l) * k(b,x, l))) - 
-              activegp:::Ikk_cpp(a, b, l, ct)) < thresh)
+              activegp:::Ikk_lebesgue(a, b, l, ct)) < thresh)
             expect_true(abs(mean(sapply(xs, function(x) k(x, b, l) * k(a,x, l))) - 
-              activegp:::Ikk_cpp(b, a, l, ct)) < thresh)
+              activegp:::Ikk_lebesgue(b, a, l, ct)) < thresh)
   })
 }
 

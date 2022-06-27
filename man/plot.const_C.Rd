@@ -4,8 +4,7 @@
 \alias{plot.const_C}
 \title{Plot const_C objectc}
 \usage{
-\method{plot}{const_C}(x, output = c("all", "matrix", "logvals",
-  "projfn"), ...)
+\method{plot}{const_C}(x, output = c("all", "matrix", "logvals", "projfn"), ...)
 }
 \arguments{
 \item{x}{A const_C object, the result of a call to C_GP}

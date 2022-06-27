@@ -4,30 +4,51 @@
 \alias{C_GP}
 \title{C matrix closed form expression for a GP.}
 \usage{
-C_GP(model)
+C_GP(
+  modelX,
+  y,
+  measure = "lebesgue",
+  xm = NULL,
+  xv = NULL,
+  S = NULL,
+  verbose = TRUE
+)
 }
 \arguments{
-\item{model}{\code{homGP} or \code{hetGP} GP model, see \code{\link[hetGP]{hetGP-package}} containing, e.g.,
+\item{modelX}{This may be either 1) a \code{homGP} or \code{hetGP} GP model, see \code{\link[hetGP]{hetGP-package}} containing, e.g.,
  a vector of \code{theta}s, type of covariance \code{ct}, an inverse covariance matrix \code{Ki},
-a design matrix \code{X0}, and response vector \code{Z0}.}
+a design matrix \code{X0}, and response vector \code{Z0}. 2) A matrix of design locations, in which case a vector of responses must be given as the y argument, and this function will fit a default model for you.}
+
+\item{y}{A vector of responses corresponding to the design matrix; may be ommited if a GP fit is provided in the modelX argument.}
+
+\item{measure}{One of c("lebesgue", "gaussian", "trunc_gaussian", "sample", "discrete"), indiciating the probability distribution with respect to which the input points are drawn in the definition of the active subspace. "lebesgue" uses the Lebesgue or Uniform measure over the unit hypercube [0,1]^d. "gaussian" uses a Gaussian or Normal distribution, in which case xm and xv should be specified. "trunc_gaussian" gives a truncated Gaussian or Normal distribution over the unit hypercube [0,1]^d, in which case xm and xv should be specified. "sample" gives the Sample or Empirical measure (dirac deltas located at each design point), which is equivalent to calculating the average expected gradient outer product at the design points. "discrete" gives a measure which puts equal weight at points in the input space specified via the S parameter, which should be a matrix with one row for each atom of the measure.}
+
+\item{xm}{If measure is "gaussian" or "trunc_gaussian", gives the mean vector.}
+
+\item{xv}{If measure is "gaussian" or "trunc_gaussian", gives the marginal variance vector. The covariance matrix is assumed to be diagonal.}
+
+\item{S}{If measure is "discrete", gives the locations of the measure's atoms.}
+
+\item{verbose}{Should we print progress?}
 }
 \value{
 a \code{const_C} object with elements
 \itemize{
-\item \code{model}: GP model provided;
+\item \code{model}: GP model provided or estimated;
 \item \code{mat}: C matrix estimated;
 \item \code{Wij}: list of W matrices, of size number of variables;
 \item \code{ct}: covariance type (1 for "Gaussian", 2 for "Matern3_2", 3 for "Matern5_2").
 }
 }
 \description{
-Computes the integral (uniform measure) over the [0,1] box domain of the outer product of the gradients of a Gaussian process. 
-The corresponding matrix is the C matrix central in the active subspace methodology.
+Computes the integral over the input domain of the outer product of the gradients of a Gaussian process. 
+The corresponding matrix is the C matrix central in active subspace methodology.
 }
 \examples{
 ################################################################################
 ### Active subspace of a Gaussian process
 ################################################################################
+\donttest{ 
 library(hetGP); library(lhs)
 set.seed(42)
 
@@ -63,6 +84,7 @@ plot(design \%*\% eigen(C_hat$mat)$vectors[,2], response,
 plot(C_hat)
 # par(mfrow = c(1, 1)) # restore graphical window
 
+} 
 }
 \references{
 N. Wycoff, M. Binois, S. Wild (2019+), Sequential Learning of Active Subspaces, preprint.\cr

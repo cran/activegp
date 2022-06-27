@@ -23,6 +23,7 @@ Defined as E[(C - E[C])^2], where A^2 = AA (not elementwise multiplication).
 ################################################################################
 ### Norm of the variance of C criterion landscape
 ################################################################################
+\donttest{ 
 library(hetGP)
 set.seed(42)
 nvar <- 2
@@ -54,6 +55,7 @@ cvar_crit <- function(C, xnew){
 Cvar_grid <- apply(Xgrid, 1, cvar_crit, C = C_hat)
 filled.contour(matrix(Cvar_grid, ngrid), color.palette = terrain.colors,
                plot.axes = {axis(1); axis(2); points(design, pch = 20)})
+}
 }
 \references{
 N. Wycoff, M. Binois, S. Wild (2019+), Sequential Learning of Active Subspaces, preprint.\cr

@@ -65,9 +65,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// w_ii_cpp
-double w_ii_cpp(double a, double b, double t, int ct);
-RcppExport SEXP _activegp_w_ii_cpp(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+// w_ii_lebesgue
+double w_ii_lebesgue(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_w_ii_lebesgue(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -75,13 +75,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type b(bSEXP);
     Rcpp::traits::input_parameter< double >::type t(tSEXP);
     Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
-    rcpp_result_gen = Rcpp::wrap(w_ii_cpp(a, b, t, ct));
+    rcpp_result_gen = Rcpp::wrap(w_ii_lebesgue(a, b, t, ct));
     return rcpp_result_gen;
 END_RCPP
 }
-// grad_w_ii_cppa
-double grad_w_ii_cppa(double a, double b, double t, int ct);
-RcppExport SEXP _activegp_grad_w_ii_cppa(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+// w_ii_tgauss
+double w_ii_tgauss(double a, double b, double t, int ct, double xm, double xv);
+RcppExport SEXP _activegp_w_ii_tgauss(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP, SEXP xmSEXP, SEXP xvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -89,13 +89,15 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type b(bSEXP);
     Rcpp::traits::input_parameter< double >::type t(tSEXP);
     Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
-    rcpp_result_gen = Rcpp::wrap(grad_w_ii_cppa(a, b, t, ct));
+    Rcpp::traits::input_parameter< double >::type xm(xmSEXP);
+    Rcpp::traits::input_parameter< double >::type xv(xvSEXP);
+    rcpp_result_gen = Rcpp::wrap(w_ii_tgauss(a, b, t, ct, xm, xv));
     return rcpp_result_gen;
 END_RCPP
 }
-// grad_w_ii_cppb
-double grad_w_ii_cppb(double a, double b, double t, int ct);
-RcppExport SEXP _activegp_grad_w_ii_cppb(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+// w_ii_gauss
+double w_ii_gauss(double a, double b, double t, int ct, double xm, double xv);
+RcppExport SEXP _activegp_w_ii_gauss(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP, SEXP xmSEXP, SEXP xvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -103,13 +105,15 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type b(bSEXP);
     Rcpp::traits::input_parameter< double >::type t(tSEXP);
     Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
-    rcpp_result_gen = Rcpp::wrap(grad_w_ii_cppb(a, b, t, ct));
+    Rcpp::traits::input_parameter< double >::type xm(xmSEXP);
+    Rcpp::traits::input_parameter< double >::type xv(xvSEXP);
+    rcpp_result_gen = Rcpp::wrap(w_ii_gauss(a, b, t, ct, xm, xv));
     return rcpp_result_gen;
 END_RCPP
 }
-// w_ij_cpp
-double w_ij_cpp(double a, double b, double t, int ct);
-RcppExport SEXP _activegp_w_ij_cpp(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+// grad_w_ii_lebesguea
+double grad_w_ii_lebesguea(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_grad_w_ii_lebesguea(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -117,13 +121,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type b(bSEXP);
     Rcpp::traits::input_parameter< double >::type t(tSEXP);
     Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
-    rcpp_result_gen = Rcpp::wrap(w_ij_cpp(a, b, t, ct));
+    rcpp_result_gen = Rcpp::wrap(grad_w_ii_lebesguea(a, b, t, ct));
     return rcpp_result_gen;
 END_RCPP
 }
-// grad_w_ij_cppa
-double grad_w_ij_cppa(double a, double b, double t, int ct);
-RcppExport SEXP _activegp_grad_w_ij_cppa(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+// grad_w_ii_lebesgueb
+double grad_w_ii_lebesgueb(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_grad_w_ii_lebesgueb(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -131,13 +135,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type b(bSEXP);
     Rcpp::traits::input_parameter< double >::type t(tSEXP);
     Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
-    rcpp_result_gen = Rcpp::wrap(grad_w_ij_cppa(a, b, t, ct));
+    rcpp_result_gen = Rcpp::wrap(grad_w_ii_lebesgueb(a, b, t, ct));
     return rcpp_result_gen;
 END_RCPP
 }
-// grad_w_ij_cppb
-double grad_w_ij_cppb(double a, double b, double t, int ct);
-RcppExport SEXP _activegp_grad_w_ij_cppb(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+// grad_w_ii_dt_cpp
+double grad_w_ii_dt_cpp(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_grad_w_ii_dt_cpp(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -145,13 +149,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type b(bSEXP);
     Rcpp::traits::input_parameter< double >::type t(tSEXP);
     Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
-    rcpp_result_gen = Rcpp::wrap(grad_w_ij_cppb(a, b, t, ct));
+    rcpp_result_gen = Rcpp::wrap(grad_w_ii_dt_cpp(a, b, t, ct));
     return rcpp_result_gen;
 END_RCPP
 }
-// Ikk_cpp
-double Ikk_cpp(double a, double b, double t, int ct);
-RcppExport SEXP _activegp_Ikk_cpp(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+// w_ij_lebesgue
+double w_ij_lebesgue(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_w_ij_lebesgue(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -159,13 +163,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type b(bSEXP);
     Rcpp::traits::input_parameter< double >::type t(tSEXP);
     Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
-    rcpp_result_gen = Rcpp::wrap(Ikk_cpp(a, b, t, ct));
+    rcpp_result_gen = Rcpp::wrap(w_ij_lebesgue(a, b, t, ct));
     return rcpp_result_gen;
 END_RCPP
 }
-// grad_Ikk_cppa
-double grad_Ikk_cppa(double a, double b, double t, int ct);
-RcppExport SEXP _activegp_grad_Ikk_cppa(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+// w_ij_tgauss
+double w_ij_tgauss(double a, double b, double t, int ct, double xm, double xv);
+RcppExport SEXP _activegp_w_ij_tgauss(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP, SEXP xmSEXP, SEXP xvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -173,13 +177,15 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type b(bSEXP);
     Rcpp::traits::input_parameter< double >::type t(tSEXP);
     Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
-    rcpp_result_gen = Rcpp::wrap(grad_Ikk_cppa(a, b, t, ct));
+    Rcpp::traits::input_parameter< double >::type xm(xmSEXP);
+    Rcpp::traits::input_parameter< double >::type xv(xvSEXP);
+    rcpp_result_gen = Rcpp::wrap(w_ij_tgauss(a, b, t, ct, xm, xv));
     return rcpp_result_gen;
 END_RCPP
 }
-// grad_Ikk_cppb
-double grad_Ikk_cppb(double a, double b, double t, int ct);
-RcppExport SEXP _activegp_grad_Ikk_cppb(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+// w_ij_gauss
+double w_ij_gauss(double a, double b, double t, int ct, double xm, double xv);
+RcppExport SEXP _activegp_w_ij_gauss(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP, SEXP xmSEXP, SEXP xvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -187,7 +193,139 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type b(bSEXP);
     Rcpp::traits::input_parameter< double >::type t(tSEXP);
     Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
-    rcpp_result_gen = Rcpp::wrap(grad_Ikk_cppb(a, b, t, ct));
+    Rcpp::traits::input_parameter< double >::type xm(xmSEXP);
+    Rcpp::traits::input_parameter< double >::type xv(xvSEXP);
+    rcpp_result_gen = Rcpp::wrap(w_ij_gauss(a, b, t, ct, xm, xv));
+    return rcpp_result_gen;
+END_RCPP
+}
+// grad_w_ij_lebesguea
+double grad_w_ij_lebesguea(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_grad_w_ij_lebesguea(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    rcpp_result_gen = Rcpp::wrap(grad_w_ij_lebesguea(a, b, t, ct));
+    return rcpp_result_gen;
+END_RCPP
+}
+// grad_w_ij_lebesgueb
+double grad_w_ij_lebesgueb(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_grad_w_ij_lebesgueb(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    rcpp_result_gen = Rcpp::wrap(grad_w_ij_lebesgueb(a, b, t, ct));
+    return rcpp_result_gen;
+END_RCPP
+}
+// grad_w_ij_dt_cpp
+double grad_w_ij_dt_cpp(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_grad_w_ij_dt_cpp(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    rcpp_result_gen = Rcpp::wrap(grad_w_ij_dt_cpp(a, b, t, ct));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Ikk_lebesgue
+double Ikk_lebesgue(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_Ikk_lebesgue(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    rcpp_result_gen = Rcpp::wrap(Ikk_lebesgue(a, b, t, ct));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Ikk_tgauss
+double Ikk_tgauss(double a, double b, double t, int ct, double xm, double xv);
+RcppExport SEXP _activegp_Ikk_tgauss(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP, SEXP xmSEXP, SEXP xvSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    Rcpp::traits::input_parameter< double >::type xm(xmSEXP);
+    Rcpp::traits::input_parameter< double >::type xv(xvSEXP);
+    rcpp_result_gen = Rcpp::wrap(Ikk_tgauss(a, b, t, ct, xm, xv));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Ikk_gauss
+double Ikk_gauss(double a, double b, double t, int ct, double xm, double xv);
+RcppExport SEXP _activegp_Ikk_gauss(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP, SEXP xmSEXP, SEXP xvSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    Rcpp::traits::input_parameter< double >::type xm(xmSEXP);
+    Rcpp::traits::input_parameter< double >::type xv(xvSEXP);
+    rcpp_result_gen = Rcpp::wrap(Ikk_gauss(a, b, t, ct, xm, xv));
+    return rcpp_result_gen;
+END_RCPP
+}
+// grad_Ikk_lebesguea
+double grad_Ikk_lebesguea(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_grad_Ikk_lebesguea(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    rcpp_result_gen = Rcpp::wrap(grad_Ikk_lebesguea(a, b, t, ct));
+    return rcpp_result_gen;
+END_RCPP
+}
+// grad_Ikk_lebesgueb
+double grad_Ikk_lebesgueb(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_grad_Ikk_lebesgueb(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    rcpp_result_gen = Rcpp::wrap(grad_Ikk_lebesgueb(a, b, t, ct));
+    return rcpp_result_gen;
+END_RCPP
+}
+// grad_Ikk_dt_cpp
+double grad_Ikk_dt_cpp(double a, double b, double t, int ct);
+RcppExport SEXP _activegp_grad_Ikk_dt_cpp(SEXP aSEXP, SEXP bSEXP, SEXP tSEXP, SEXP ctSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< double >::type a(aSEXP);
+    Rcpp::traits::input_parameter< double >::type b(bSEXP);
+    Rcpp::traits::input_parameter< double >::type t(tSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    rcpp_result_gen = Rcpp::wrap(grad_Ikk_dt_cpp(a, b, t, ct));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -203,6 +341,21 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type i2(i2SEXP);
     Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
     rcpp_result_gen = Rcpp::wrap(W_kappa_ij(design, theta, i1, i2, ct));
+    return rcpp_result_gen;
+END_RCPP
+}
+// W_kappa_lk
+NumericMatrix W_kappa_lk(NumericMatrix design, NumericVector theta, int i1, int i2, int ct);
+RcppExport SEXP _activegp_W_kappa_lk(SEXP designSEXP, SEXP thetaSEXP, SEXP i1SEXP, SEXP i2SEXP, SEXP ctSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type design(designSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type theta(thetaSEXP);
+    Rcpp::traits::input_parameter< int >::type i1(i1SEXP);
+    Rcpp::traits::input_parameter< int >::type i2(i2SEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    rcpp_result_gen = Rcpp::wrap(W_kappa_lk(design, theta, i1, i2, ct));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -270,26 +423,74 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// quick_C
+List quick_C(int measure, NumericMatrix design, NumericMatrix Ki, NumericVector Kir, NumericVector theta, NumericVector xm, NumericVector xv, int ct, bool verbose);
+RcppExport SEXP _activegp_quick_C(SEXP measureSEXP, SEXP designSEXP, SEXP KiSEXP, SEXP KirSEXP, SEXP thetaSEXP, SEXP xmSEXP, SEXP xvSEXP, SEXP ctSEXP, SEXP verboseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type measure(measureSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type design(designSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type Ki(KiSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Kir(KirSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type theta(thetaSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type xm(xmSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type xv(xvSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(quick_C(measure, design, Ki, Kir, theta, xm, xv, ct, verbose));
+    return rcpp_result_gen;
+END_RCPP
+}
+// grad_W_t
+NumericMatrix grad_W_t(NumericMatrix design, NumericVector theta, NumericMatrix W, int i1, int i2, int it, int ct);
+RcppExport SEXP _activegp_grad_W_t(SEXP designSEXP, SEXP thetaSEXP, SEXP WSEXP, SEXP i1SEXP, SEXP i2SEXP, SEXP itSEXP, SEXP ctSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type design(designSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type theta(thetaSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type W(WSEXP);
+    Rcpp::traits::input_parameter< int >::type i1(i1SEXP);
+    Rcpp::traits::input_parameter< int >::type i2(i2SEXP);
+    Rcpp::traits::input_parameter< int >::type it(itSEXP);
+    Rcpp::traits::input_parameter< int >::type ct(ctSEXP);
+    rcpp_result_gen = Rcpp::wrap(grad_W_t(design, theta, W, i1, i2, it, ct));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_activegp_C_GP_cpp", (DL_FUNC) &_activegp_C_GP_cpp, 5},
     {"_activegp_d_gauss_cpp", (DL_FUNC) &_activegp_d_gauss_cpp, 3},
     {"_activegp_d_mat52_cpp", (DL_FUNC) &_activegp_d_mat52_cpp, 3},
     {"_activegp_d_mat32_cpp", (DL_FUNC) &_activegp_d_mat32_cpp, 3},
-    {"_activegp_w_ii_cpp", (DL_FUNC) &_activegp_w_ii_cpp, 4},
-    {"_activegp_grad_w_ii_cppa", (DL_FUNC) &_activegp_grad_w_ii_cppa, 4},
-    {"_activegp_grad_w_ii_cppb", (DL_FUNC) &_activegp_grad_w_ii_cppb, 4},
-    {"_activegp_w_ij_cpp", (DL_FUNC) &_activegp_w_ij_cpp, 4},
-    {"_activegp_grad_w_ij_cppa", (DL_FUNC) &_activegp_grad_w_ij_cppa, 4},
-    {"_activegp_grad_w_ij_cppb", (DL_FUNC) &_activegp_grad_w_ij_cppb, 4},
-    {"_activegp_Ikk_cpp", (DL_FUNC) &_activegp_Ikk_cpp, 4},
-    {"_activegp_grad_Ikk_cppa", (DL_FUNC) &_activegp_grad_Ikk_cppa, 4},
-    {"_activegp_grad_Ikk_cppb", (DL_FUNC) &_activegp_grad_Ikk_cppb, 4},
+    {"_activegp_w_ii_lebesgue", (DL_FUNC) &_activegp_w_ii_lebesgue, 4},
+    {"_activegp_w_ii_tgauss", (DL_FUNC) &_activegp_w_ii_tgauss, 6},
+    {"_activegp_w_ii_gauss", (DL_FUNC) &_activegp_w_ii_gauss, 6},
+    {"_activegp_grad_w_ii_lebesguea", (DL_FUNC) &_activegp_grad_w_ii_lebesguea, 4},
+    {"_activegp_grad_w_ii_lebesgueb", (DL_FUNC) &_activegp_grad_w_ii_lebesgueb, 4},
+    {"_activegp_grad_w_ii_dt_cpp", (DL_FUNC) &_activegp_grad_w_ii_dt_cpp, 4},
+    {"_activegp_w_ij_lebesgue", (DL_FUNC) &_activegp_w_ij_lebesgue, 4},
+    {"_activegp_w_ij_tgauss", (DL_FUNC) &_activegp_w_ij_tgauss, 6},
+    {"_activegp_w_ij_gauss", (DL_FUNC) &_activegp_w_ij_gauss, 6},
+    {"_activegp_grad_w_ij_lebesguea", (DL_FUNC) &_activegp_grad_w_ij_lebesguea, 4},
+    {"_activegp_grad_w_ij_lebesgueb", (DL_FUNC) &_activegp_grad_w_ij_lebesgueb, 4},
+    {"_activegp_grad_w_ij_dt_cpp", (DL_FUNC) &_activegp_grad_w_ij_dt_cpp, 4},
+    {"_activegp_Ikk_lebesgue", (DL_FUNC) &_activegp_Ikk_lebesgue, 4},
+    {"_activegp_Ikk_tgauss", (DL_FUNC) &_activegp_Ikk_tgauss, 6},
+    {"_activegp_Ikk_gauss", (DL_FUNC) &_activegp_Ikk_gauss, 6},
+    {"_activegp_grad_Ikk_lebesguea", (DL_FUNC) &_activegp_grad_Ikk_lebesguea, 4},
+    {"_activegp_grad_Ikk_lebesgueb", (DL_FUNC) &_activegp_grad_Ikk_lebesgueb, 4},
+    {"_activegp_grad_Ikk_dt_cpp", (DL_FUNC) &_activegp_grad_Ikk_dt_cpp, 4},
     {"_activegp_W_kappa_ij", (DL_FUNC) &_activegp_W_kappa_ij, 5},
+    {"_activegp_W_kappa_lk", (DL_FUNC) &_activegp_W_kappa_lk, 5},
     {"_activegp_W_kappa_ij2", (DL_FUNC) &_activegp_W_kappa_ij2, 6},
     {"_activegp_grad_W_kappa_ij2", (DL_FUNC) &_activegp_grad_W_kappa_ij2, 6},
     {"_activegp_grad_W_kappa_ij2_w2", (DL_FUNC) &_activegp_grad_W_kappa_ij2_w2, 6},
     {"_activegp_W_kappa_ij_up", (DL_FUNC) &_activegp_W_kappa_ij_up, 7},
+    {"_activegp_quick_C", (DL_FUNC) &_activegp_quick_C, 9},
+    {"_activegp_grad_W_t", (DL_FUNC) &_activegp_grad_W_t, 7},
     {NULL, NULL, 0}
 };
 

@@ -1,4 +1,3 @@
-
 #' Get Integerodifferential Quantities
 #'
 #' Returns an element related to an integral of a derivative of the desired kernel. See references for details.

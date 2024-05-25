@@ -909,7 +909,6 @@ NumericMatrix W_kappa_ij(NumericMatrix design, NumericVector theta, int i1, int 
 //' @keywords internal
 // [[Rcpp::export]]
 NumericMatrix W_kappa_lk(NumericMatrix design, NumericVector theta, int i1, int i2, int ct){
-  int n = design.nrow();
   int d = design.ncol();
 
   NumericMatrix W(d, d);

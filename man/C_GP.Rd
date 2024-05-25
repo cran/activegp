@@ -2,7 +2,7 @@
 % Please edit documentation in R/activeC.R
 \name{C_GP}
 \alias{C_GP}
-\title{C matrix closed form expression for a GP.}
+\title{Active Subspace Matrix closed form expression for a GP.}
 \usage{
 C_GP(
   modelX,
@@ -27,7 +27,7 @@ a design matrix \code{X0}, and response vector \code{Z0}. 2) A matrix of design 
 
 \item{xv}{If measure is "gaussian" or "trunc_gaussian", gives the marginal variance vector. The covariance matrix is assumed to be diagonal.}
 
-\item{S}{If measure is "discrete", gives the locations of the measure's atoms.}
+\item{S}{If measure is "discrete", gives the locations of the measure's atoms. S is a matrix, each row of which gives an atom.}
 
 \item{verbose}{Should we print progress?}
 }

@@ -51,7 +51,7 @@ C_GP_discrete <- function(fit, S) {
     Cxh <- Reduce(function(x, y) x+y, Cxs) / nrow(fit$X)
 }
 
-#' @title C matrix closed form expression for a GP.
+#' @title Active Subspace Matrix closed form expression for a GP.
 #' @description 
 #' Computes the integral over the input domain of the outer product of the gradients of a Gaussian process. 
 #' The corresponding matrix is the C matrix central in active subspace methodology.
@@ -62,7 +62,7 @@ C_GP_discrete <- function(fit, S) {
 #' @param measure One of c("lebesgue", "gaussian", "trunc_gaussian", "sample", "discrete"), indiciating the probability distribution with respect to which the input points are drawn in the definition of the active subspace. "lebesgue" uses the Lebesgue or Uniform measure over the unit hypercube [0,1]^d. "gaussian" uses a Gaussian or Normal distribution, in which case xm and xv should be specified. "trunc_gaussian" gives a truncated Gaussian or Normal distribution over the unit hypercube [0,1]^d, in which case xm and xv should be specified. "sample" gives the Sample or Empirical measure (dirac deltas located at each design point), which is equivalent to calculating the average expected gradient outer product at the design points. "discrete" gives a measure which puts equal weight at points in the input space specified via the S parameter, which should be a matrix with one row for each atom of the measure.  
 #' @param xm If measure is "gaussian" or "trunc_gaussian", gives the mean vector. 
 #' @param xv If measure is "gaussian" or "trunc_gaussian", gives the marginal variance vector. The covariance matrix is assumed to be diagonal.
-#' @param S If measure is "discrete", gives the locations of the measure's atoms. 
+#' @param S If measure is "discrete", gives the locations of the measure's atoms. S is a matrix, each row of which gives an atom.
 #' @param verbose Should we print progress?
 #' @return a \code{const_C} object with elements
 #' \itemize{
@@ -145,7 +145,7 @@ C_GP <- function(modelX, y, measure = 'lebesgue', xm = NULL, xv = NULL, S = NULL
 
     if (measure %in% c('lebesgue', 'trunc_gaussian'))
       if(max(model$X) > 1 + sqrt(.Machine$double.eps)|| min(model$X) < 0 - sqrt(.Machine$double.eps)) {
-          warning("Designs are supposed to be in [0,1]^d for lebesgue or trunc_gaussian; please rescale.\n Extreme values of ", min(model$X), ", ", max(model$X), " detected in model$X. ")
+          warning("Designs are supposed to be in [0,1]^d for lebesgue or trunc_gaussian; you may wish to rescale. \n Extreme values of ", min(model$X), ", ", max(model$X), " detected in model$X. ")
       }
 
     if (is.null(model$X)) {

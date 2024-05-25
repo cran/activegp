@@ -11,9 +11,9 @@ d1(X, x, sigma, type)
 
 \item{x}{The point at which to evaluate.}
 
-\item{The}{error variance of the model.}
+\item{sigma}{The error variance of the model.}
 
-\item{A}{string, one of "Gaussian", "Matern5_2", and "Matern3_2" indicating the covariance kernel to use.}
+\item{type}{A string, one of "Gaussian", "Matern5_2", and "Matern3_2" indicating the covariance kernel to use.}
 }
 \value{
 The scalar value given the integrated derivative.

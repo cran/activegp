@@ -1,3 +1,7 @@
+## change / activegp 1.1.2
+  * Removed invalid C++ standard specification from src/Makevars.
+  * DESCRIPTION now uses Authors@R; dropped unused Imports (MASS, RcppProgress).
+
 ## change / activegp 1.1.1
   * Updated documentation.
   * Progress bar now optional.

@@ -1,7 +1,7 @@
-4388050a9b2d7ae2809dcbcb32b9e4fd *DESCRIPTION
+559d159778abcc05dfe98621654d47d7 *DESCRIPTION
 83e5c02a685ca45ca7165e8337c5983b *LICENSE
 c736ce589765768cdee385f9ec71b59f *NAMESPACE
-6b9b82d815ee2033a40c1dea9d364e16 *NEWS
+1815f6607c625abca0c12b35cf861e5a *NEWS
 c9b11cef5e1e99aa8295aaddb53b1c20 *R/RcppExports.R
 f6ca3f677e4c6a07f269a6aed511dcbf *R/activeC.R
 60fca9f628d725dcff247535f12d651c *R/activegp-package.R
@@ -40,7 +40,7 @@ b74d201c091334bee408e932acd9f888 *man/subspace_dist.Rd
 ec1e4a0057f60247d9913f9027048ce9 *man/update.const_C.Rd
 00d2d992e27256e179ab370b90ef32b3 *man/update_C2.Rd
 4649fbb20536d48366181dc4a3d8fcd5 *src/C_GPcpp.cpp
-70ec464237bf39be51b84417ad48eedb *src/Makevars
+2a6f9e9e044a78154d3cfda5936d6f48 *src/Makevars
 2a6f9e9e044a78154d3cfda5936d6f48 *src/Makevars.win
 26c6afd7191856d17014251435bae16d *src/RcppExports.cpp
 efa7c3ef818c7c026d18c89507cc6f4d *src/hetGP_funcs.cpp
